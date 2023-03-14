@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,13 +15,13 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Cars {
+@Entity(name = "cars")
+public class Car {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name ="UUID",strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
-    @Column(length = 50, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+    @Column(length = 50)
     private String name;
     @Column(name = "state")
     private Enum state;
@@ -43,7 +42,7 @@ public class Cars {
 
     @ManyToOne
     @JoinColumn(name = "model_id")
-    private Models models;
+    private Model model;
 
 
 

@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,16 +15,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Brands {
+@Entity(name = "brands")
+public class Brand {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name ="UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
-    @Column(length = 50, nullable = false)
+    private int id;
+    @Column(length = 50)
     private String name;
 
-    @OneToMany(mappedBy = "brands")
-    private List<Models> models;
+    @OneToMany(mappedBy = "brand")
+    private List<Model> models;
 }
