@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,10 +15,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Models {
+@Entity(name = "Models")
+public class Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(length = 50, nullable = false)
@@ -27,8 +26,8 @@ public class Models {
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    private Brands brands;
+    private Brand brand;
 
-    @OneToMany(mappedBy = "models")
-    private List<Cars> cars;
+    @OneToMany(mappedBy = "model")
+    private List<Car> cars;
 }
