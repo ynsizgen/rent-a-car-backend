@@ -10,8 +10,8 @@ import java.util.List;
 public interface BrandService {
     List<GetAllBrandsResponse> getAll();
     boolean add(CreateBrandRequest createBrandRequest);
-    GetByIdBrandResponse getById(String id);
-    boolean delete(String id);
+    GetByIdBrandResponse getById(int id);
+    boolean delete(int id);
     boolean update(UpdateBrandRequest updateBrandRequest);
 
 }

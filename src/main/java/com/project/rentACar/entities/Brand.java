@@ -10,22 +10,21 @@ import javax.persistence.*;
 import java.util.List;
 
 
-@Table(name="brand")
+@Table(name = "Brands")
 //@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Brands {
+public class Brand {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name ="UUID",strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private String id;
+    private int id;
     @Column(length = 50, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "brands")
-    private List<Models> models;
+    @OneToMany(mappedBy = "brand")
+    private List<Model> models;
 }

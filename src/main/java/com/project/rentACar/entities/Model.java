@@ -8,27 +8,28 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.print.attribute.standard.MediaSize;
 import java.util.List;
 
-@Table(name="model")
+@Table(name = "Models")
 //@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Models {
+public class Model {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name ="UUID",strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
     @Column(length = 50, nullable = false)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    private Brands brands;
+    private Brand brand;
 
-    @OneToMany(mappedBy = "models")
-    private List<Cars> cars;
+    @OneToMany(mappedBy = "model")
+    private List<Car> cars;
 }

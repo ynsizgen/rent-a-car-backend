@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetAllBrandsResponse {
-    private String id;
+    private int id;
     private String name;
 }
+
+
+

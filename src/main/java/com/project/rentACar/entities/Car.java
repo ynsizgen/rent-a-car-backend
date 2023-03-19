@@ -1,31 +1,27 @@
 package com.project.rentACar.entities;
 
+import com.project.rentACar.enums.EnumState;
 import com.project.rentACar.enums.EnumVehicleType;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Table(name="car")
-//@Data
-@Getter
-@Setter
+
+@Table(name = "Cars")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Cars {
+public class Car {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name ="UUID",strategy = "org.hibernate.id.UUIDGenerator")
-    private String id;
-    @Column(length = 50, nullable = false)
-    private String name;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
     @Column(name = "state")
-    private Enum state;
+    private EnumState state;
     @Column(name = "plates" , unique = true)
     private String plates;
     @Column(name = "daily_price")
@@ -39,11 +35,11 @@ public class Cars {
     @Column(name="vehicle_type")
     private EnumVehicleType enumVehicleType;
     @Column(name="creat_date")
-    private Date createDate;
+    private LocalDateTime createDate = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "model_id")
-    private Models models;
+    private Model model;
 
 
 

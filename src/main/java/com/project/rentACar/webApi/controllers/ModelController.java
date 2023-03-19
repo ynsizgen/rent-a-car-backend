@@ -6,11 +6,9 @@ import com.project.rentACar.business.response.GetAllModelsResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -28,8 +26,9 @@ public class ModelController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Boolean> add(CreateModelRequest createModelRequest){
-        return new ResponseEntity<>(this.modelService.add(createModelRequest), CREATED);
+    @ResponseStatus(CREATED)
+    public boolean add(@RequestBody @Valid CreateModelRequest createModelRequest){
+        return this.modelService.add(createModelRequest);
 
     }
 

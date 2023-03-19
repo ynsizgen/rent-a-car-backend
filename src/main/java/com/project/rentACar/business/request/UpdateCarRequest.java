@@ -1,14 +1,13 @@
 package com.project.rentACar.business.request;
 
+import com.project.rentACar.enums.EnumState;
 import com.project.rentACar.enums.EnumVehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,12 +15,11 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateBrandRequest {
-
+public class UpdateCarRequest {
+    @NotNull
     private int id;
-
-    @NotNull(message = "İsim girilmedi")
-    @NotEmpty
-    @Size(min = 3 , max = 20)
-    private String name;
+    @NotNull
+    private EnumState state;
+    @NotNull
+    private double dailyPrice;
 }
