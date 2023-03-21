@@ -28,7 +28,7 @@ public class Car {
     private double dailyPrice;
     @Column(name = "model_year")
     private int modelYear;
-    @Column(name = "seats",length = 1)
+    @Column(name = "seats")
     private int seats;
     @Column(name ="manuel_auto")
     private boolean manuelAuto;

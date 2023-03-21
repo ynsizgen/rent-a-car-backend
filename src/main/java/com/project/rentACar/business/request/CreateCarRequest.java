@@ -31,9 +31,8 @@ public class CreateCarRequest {
     private int seats;
     @NotNull
     private boolean manuelAuto;
-
     private EnumVehicleType enumVehicleType;
-
+    @NotNull
     private int modelId;
 
 }

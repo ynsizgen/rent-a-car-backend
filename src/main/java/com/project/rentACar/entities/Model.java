@@ -5,11 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.print.attribute.standard.MediaSize;
 import java.util.List;
+
+
 
 @Table(name = "Models")
 //@Data
@@ -33,3 +33,5 @@ public class Model {
     @OneToMany(mappedBy = "model")
     private List<Car> cars;
 }
+
+
