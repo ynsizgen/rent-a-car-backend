@@ -11,7 +11,4 @@ import lombok.NoArgsConstructor;
 public class GetByIdBrandResponse {
     private int id;
     private String name;
-    private int seats;
-    private boolean manuelAuto;
-    private EnumVehicleType enumVehicleType;
 }

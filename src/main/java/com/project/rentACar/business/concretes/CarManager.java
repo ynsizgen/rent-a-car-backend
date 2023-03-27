@@ -4,6 +4,8 @@ import com.project.rentACar.business.abstracts.CarService;
 import com.project.rentACar.business.request.CreateCarRequest;
 import com.project.rentACar.business.request.UpdateCarRequest;
 import com.project.rentACar.business.response.GetAllCarsResponse;
+import com.project.rentACar.business.response.GetByIdCarResponse;
+import com.project.rentACar.business.response.GetByModelIdCarResponse;
 import com.project.rentACar.business.roles.CarBusinessRoles;
 import com.project.rentACar.core.utilities.mappers.ModelMapperService;
 import com.project.rentACar.dataAccess.CarRepository;
@@ -46,6 +48,20 @@ public class CarManager implements CarService {
         existingCar.setDailyPrice(updateCarRequest.getDailyPrice());
         existingCar.setState(updateCarRequest.getState());
         this.carRepository.save(existingCar);
+    }
+
+    @Override
+    public List<GetByModelIdCarResponse> getByModelId(int id) {
+        List<Car> cars = this.carRepository.getByModelId(id);
+        List<GetByModelIdCarResponse> getByModelIdCarResponses = cars.stream().map( car -> this.modelMapperService.forResponse().map(car,GetByModelIdCarResponse.class)).collect(Collectors.toList());
+        return getByModelIdCarResponses;
+    }
+
+    @Override
+    public List<GetByIdCarResponse> findAllByStateTrue() {
+        List<Car> cars = this.carRepository.findAllByStateTrue();
+        List<GetByIdCarResponse> getByIdCarResponses = cars.stream().map(car -> this.modelMapperService.forResponse().map(car,GetByIdCarResponse.class)).collect(Collectors.toList());
+        return getByIdCarResponses;
     }
 
 }

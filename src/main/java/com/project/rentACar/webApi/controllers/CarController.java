@@ -4,6 +4,8 @@ import com.project.rentACar.business.abstracts.CarService;
 import com.project.rentACar.business.request.CreateCarRequest;
 import com.project.rentACar.business.request.UpdateCarRequest;
 import com.project.rentACar.business.response.GetAllCarsResponse;
+import com.project.rentACar.business.response.GetByIdCarResponse;
+import com.project.rentACar.business.response.GetByModelIdCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,5 +35,17 @@ public class CarController {
     @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody @Valid UpdateCarRequest updateCarRequest) {
         this.carService.update(updateCarRequest);
+    }
+
+    @GetMapping("/getByModelId/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<GetByModelIdCarResponse> getByModelId(@PathVariable int id){
+        return this.carService.getByModelId(id);
+    }
+
+    @GetMapping("/findAllByStateTrue")
+    @ResponseStatus(HttpStatus.OK)
+    public List<GetByIdCarResponse> findAllByStateTrue(){
+        return this.carService.findAllByStateTrue();
     }
 }

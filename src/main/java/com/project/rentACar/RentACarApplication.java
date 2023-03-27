@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 
 @SpringBootApplication
@@ -44,6 +45,15 @@ public class RentACarApplication {
 			validateProblemDetails.getValidationErrors().put(fieldError.getField(),fieldError.getDefaultMessage());
 		}
 		return validateProblemDetails;
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ProblemDetails handleEntityIdExpection(EntityNotFoundException entityNotFoundException) {
+		ProblemDetails problemDetails = new ProblemDetails();
+		problemDetails.setMessage(entityNotFoundException.getMessage());
+
+		return problemDetails;
 	}
 
 

@@ -3,6 +3,9 @@ package com.project.rentACar.business.abstracts;
 import com.project.rentACar.business.request.CreateCarRequest;
 import com.project.rentACar.business.request.UpdateCarRequest;
 import com.project.rentACar.business.response.GetAllCarsResponse;
+import com.project.rentACar.business.response.GetByIdCarResponse;
+import com.project.rentACar.business.response.GetByModelIdCarResponse;
+
 import java.util.List;
 
 public interface CarService {
@@ -12,5 +15,7 @@ public interface CarService {
 
     void update(UpdateCarRequest updateCarRequest);
 
+    List<GetByModelIdCarResponse> getByModelId(int id);
 
+    List<GetByIdCarResponse> findAllByStateTrue();
 }

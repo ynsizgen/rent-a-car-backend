@@ -1,27 +1,20 @@
 package com.project.rentACar.business.response;
 
-import com.project.rentACar.enums.EnumState;
 import com.project.rentACar.enums.EnumVehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.persistence.Column;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllCarsResponse {
+public class GetByIdCarResponse {
 
     private int id;
-    private EnumState state;
+    private Enum state;
     private String plates;
     private double dailyPrice;
     private int modelYear;
