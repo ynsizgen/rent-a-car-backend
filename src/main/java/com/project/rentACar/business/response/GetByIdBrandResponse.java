@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetByIdBrandResponse {
-    private String id;
+    private int id;
     private String name;
     private int seats;
     private boolean manuelAuto;

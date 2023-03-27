@@ -3,6 +3,7 @@ package com.project.rentACar.business.concretes;
 import com.project.rentACar.business.abstracts.ModelService;
 import com.project.rentACar.business.request.CreateModelRequest;
 import com.project.rentACar.business.response.GetAllModelsResponse;
+import com.project.rentACar.business.roles.ModelBusinessRoles;
 import com.project.rentACar.core.utilities.mappers.ModelMapperService;
 import com.project.rentACar.dataAccess.ModelRepository;
 import com.project.rentACar.entities.Model;
@@ -19,6 +20,8 @@ public class ModelManager implements ModelService {
     private ModelRepository modelRepository;
     private ModelMapperService modelMapperService;
 
+    private ModelBusinessRoles modelBusinessRoles;
+
     @Override
     public List<GetAllModelsResponse> getAll() {
         List<Model> models = this.modelRepository.findAll();
@@ -28,6 +31,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public boolean add(CreateModelRequest createModelRequest) {
+        this.modelBusinessRoles.checkIfModelNameExists(createModelRequest.getName());
         Model model = this.modelMapperService.forRequest().map(createModelRequest, Model.class);
         this.modelRepository.save(model);
         return true;

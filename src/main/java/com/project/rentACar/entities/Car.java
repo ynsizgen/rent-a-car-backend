@@ -1,44 +1,41 @@
 package com.project.rentACar.entities;
 
+import com.project.rentACar.enums.EnumState;
 import com.project.rentACar.enums.EnumVehicleType;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Table(name="car")
-//@Data
-@Getter
-@Setter
+
+@Table(name = "Cars")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "cars")
+@Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(length = 50)
-    private String name;
     @Column(name = "state")
-    private Enum state;
+    private EnumState state;
     @Column(name = "plates" , unique = true)
     private String plates;
     @Column(name = "daily_price")
     private double dailyPrice;
     @Column(name = "model_year")
     private int modelYear;
-    @Column(name = "seats",length = 1)
+    @Column(name = "seats")
     private int seats;
     @Column(name ="manuel_auto")
     private boolean manuelAuto;
     @Column(name="vehicle_type")
     private EnumVehicleType enumVehicleType;
     @Column(name="creat_date")
-    private Date createDate;
+    private LocalDateTime createDate = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "model_id")

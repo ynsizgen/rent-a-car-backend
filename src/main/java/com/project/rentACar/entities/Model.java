@@ -9,16 +9,18 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name="model")
+
+
+@Table(name = "Models")
 //@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "models")
+@Entity
 public class Model {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(length = 50, nullable = false)
@@ -31,3 +33,5 @@ public class Model {
     @OneToMany(mappedBy = "model")
     private List<Car> cars;
 }
+
+
