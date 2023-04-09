@@ -4,7 +4,6 @@ import com.project.rentACar.core.utilities.exceptions.BusinessException;
 import com.project.rentACar.core.utilities.exceptions.ProblemDetails;
 import com.project.rentACar.core.utilities.exceptions.ValidateProblemDetails;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.ValidationException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -49,7 +48,7 @@ public class RentACarApplication {
 
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	public ProblemDetails handleEntityIdExpection(EntityNotFoundException entityNotFoundException) {
+	public ProblemDetails handleEntityIdException(EntityNotFoundException entityNotFoundException) {
 		ProblemDetails problemDetails = new ProblemDetails();
 		problemDetails.setMessage(entityNotFoundException.getMessage());
 
