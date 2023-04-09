@@ -18,4 +18,6 @@ public interface CarService {
     List<GetByModelIdCarResponse> getByModelId(int id);
 
     List<GetByIdCarResponse> findAllByStateTrue();
+
+    GetByIdCarResponse getById(int id);
 }

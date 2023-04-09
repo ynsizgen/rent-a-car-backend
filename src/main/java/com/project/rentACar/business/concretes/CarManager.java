@@ -64,4 +64,11 @@ public class CarManager implements CarService {
         return getByIdCarResponses;
     }
 
+    @Override
+    public GetByIdCarResponse getById(int id) {
+        Car car = this.carRepository.getById(id);
+        GetByIdCarResponse getByIdCarResponse = this.modelMapperService.forResponse().map(car,GetByIdCarResponse.class);
+        return getByIdCarResponse;
+    }
+
 }

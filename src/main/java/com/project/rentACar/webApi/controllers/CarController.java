@@ -37,6 +37,11 @@ public class CarController {
     public void update(@RequestBody @Valid UpdateCarRequest updateCarRequest) {
         this.carService.update(updateCarRequest);
     }
+    @GetMapping("/getById/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public GetByIdCarResponse GetByIdCarResponse(@PathVariable int id){
+        return this.carService.getById(id);
+    }
 
     @GetMapping("/getByModelId/{id}")
     @ResponseStatus(HttpStatus.OK)
