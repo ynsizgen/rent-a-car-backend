@@ -32,7 +32,9 @@ public class CreateCarRequest {
     @NotNull
     private boolean manuelAuto;
     private EnumVehicleType enumVehicleType;
-    @NotNull
-    private int modelId;
+
+    private String modelName;
+
+    private String brandName;
 
 }

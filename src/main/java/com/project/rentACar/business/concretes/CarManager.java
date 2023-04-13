@@ -1,16 +1,21 @@
 package com.project.rentACar.business.concretes;
 
+import com.project.rentACar.business.abstracts.BrandService;
 import com.project.rentACar.business.abstracts.CarService;
+import com.project.rentACar.business.abstracts.ModelService;
+import com.project.rentACar.business.request.CreateBrandRequest;
 import com.project.rentACar.business.request.CreateCarRequest;
+import com.project.rentACar.business.request.CreateModelRequest;
 import com.project.rentACar.business.request.UpdateCarRequest;
-import com.project.rentACar.business.response.GetAllCarsResponse;
-import com.project.rentACar.business.response.GetByIdCarResponse;
-import com.project.rentACar.business.response.GetByModelIdCarResponse;
+import com.project.rentACar.business.response.*;
 import com.project.rentACar.business.roles.CarBusinessRoles;
 import com.project.rentACar.core.utilities.mappers.ModelMapperService;
 import com.project.rentACar.dataAccess.CarRepository;
+import com.project.rentACar.entities.Brand;
 import com.project.rentACar.entities.Car;
+import com.project.rentACar.entities.Model;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +27,8 @@ public class CarManager implements CarService {
 
     private CarRepository carRepository;
     private ModelMapperService modelMapperService;
+    private BrandService brandService;
+    private ModelService modelService;
 
     private CarBusinessRoles carBusinessRoles;
     @Override
@@ -37,6 +44,30 @@ public class CarManager implements CarService {
     @Override
     public void add(CreateCarRequest createCarRequest) {
         this.carBusinessRoles.checkIfPlateExists(createCarRequest.getPlates());
+
+        Brand brand = brandService.getByName(createCarRequest.getBrandName());
+
+        if (brand == null) {
+            brand = new Brand();
+            brand.setName(createCarRequest.getBrandName());
+            CreateBrandRequest createBrandRequest = this.modelMapperService.forResponse().map(brand,CreateBrandRequest.class);
+            brandService.add(createBrandRequest);
+        }
+
+
+        Model model= this.modelService.getByName(createCarRequest.getModelName());
+
+        if (model == null) {
+            model = new Model();
+            model.setName(createCarRequest.getModelName());
+            model.setBrand(brand);
+
+
+            CreateModelRequest createModelRequest = this.modelMapperService.forResponse().map(model,CreateModelRequest.class);
+            modelService.add(createModelRequest);
+        }
+
+
         Car car = this.modelMapperService.forRequest().map(createCarRequest,Car.class);
 
         this.carRepository.save(car);

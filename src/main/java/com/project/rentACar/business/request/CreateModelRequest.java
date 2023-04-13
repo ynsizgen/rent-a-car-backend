@@ -1,5 +1,6 @@
 package com.project.rentACar.business.request;
 
+import com.project.rentACar.entities.Brand;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,5 @@ public class CreateModelRequest {
     @Size(min = 3 , max = 20)
     private String name;
     @NotNull
-    private int brandId;
+    private Brand brand;
 }

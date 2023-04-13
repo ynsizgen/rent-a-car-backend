@@ -4,6 +4,7 @@ import com.project.rentACar.business.request.CreateBrandRequest;
 import com.project.rentACar.business.request.UpdateBrandRequest;
 import com.project.rentACar.business.response.GetAllBrandsResponse;
 import com.project.rentACar.business.response.GetByIdBrandResponse;
+import com.project.rentACar.business.response.GetByNameBrandResponse;
 import com.project.rentACar.business.roles.BrandBusinessRoles;
 import com.project.rentACar.core.utilities.mappers.ModelMapperService;
 import com.project.rentACar.entities.Brand;
@@ -58,6 +59,12 @@ public class BrandManager implements BrandService {
         Brand brand = this.modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
         this.brandRepository.save(brand);
         return true;
+    }
+
+    @Override
+    public Brand getByName(String name) {
+        Brand brand = this.brandRepository.getByName(name);
+        return brand;
     }
 
 }
