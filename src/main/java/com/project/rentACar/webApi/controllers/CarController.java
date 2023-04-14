@@ -37,6 +37,11 @@ public class CarController {
     public void update(@RequestBody @Valid UpdateCarRequest updateCarRequest) {
         this.carService.update(updateCarRequest);
     }
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable int id){
+        this.carService.delete(id);
+    }
     @GetMapping("/getById/{id}")
     @ResponseStatus(HttpStatus.OK)
     public GetByIdCarResponse GetByIdCarResponse(@PathVariable int id){

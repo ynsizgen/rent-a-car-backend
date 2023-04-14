@@ -20,4 +20,6 @@ public interface CarService {
     List<GetByIdCarResponse> findAllByStateTrue();
 
     GetByIdCarResponse getById(int id);
+
+    void delete(int id);
 }

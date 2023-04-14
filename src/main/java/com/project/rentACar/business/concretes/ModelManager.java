@@ -45,5 +45,9 @@ public class ModelManager implements ModelService {
         return model;
     }
 
+    @Override
+    public void delete(int id) {
+        this.modelRepository.delete(this.modelRepository.getById(id));
+    }
 
 }

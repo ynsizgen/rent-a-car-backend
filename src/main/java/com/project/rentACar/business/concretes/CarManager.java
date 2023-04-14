@@ -17,6 +17,7 @@ import com.project.rentACar.entities.Model;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +43,7 @@ public class CarManager implements CarService {
     }
 
     @Override
+    @Transactional
     public void add(CreateCarRequest createCarRequest) {
         this.carBusinessRoles.checkIfPlateExists(createCarRequest.getPlates());
 
@@ -50,10 +52,9 @@ public class CarManager implements CarService {
         if (brand == null) {
             brand = new Brand();
             brand.setName(createCarRequest.getBrandName());
-            CreateBrandRequest createBrandRequest = this.modelMapperService.forResponse().map(brand,CreateBrandRequest.class);
-            brandService.add(createBrandRequest);
+            //CreateBrandRequest createBrandRequest = this.modelMapperService.forResponse().map(brand,CreateBrandRequest.class);
+            //brandService.add(createBrandRequest);
         }
-
 
         Model model= this.modelService.getByName(createCarRequest.getModelName());
 
@@ -63,12 +64,12 @@ public class CarManager implements CarService {
             model.setBrand(brand);
 
 
-            CreateModelRequest createModelRequest = this.modelMapperService.forResponse().map(model,CreateModelRequest.class);
-            modelService.add(createModelRequest);
+//            CreateModelRequest createModelRequest = this.modelMapperService.forResponse().map(model,CreateModelRequest.class);
+//            modelService.add(createModelRequest);
         }
 
-
         Car car = this.modelMapperService.forRequest().map(createCarRequest,Car.class);
+        car.setModel(model);
 
         this.carRepository.save(car);
     }
@@ -100,6 +101,11 @@ public class CarManager implements CarService {
         Car car = this.carRepository.getById(id);
         GetByIdCarResponse getByIdCarResponse = this.modelMapperService.forResponse().map(car,GetByIdCarResponse.class);
         return getByIdCarResponse;
+    }
+
+    @Override
+    public void delete(int id) {
+        this.carRepository.delete(this.carRepository.getById(id));
     }
 
 }

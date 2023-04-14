@@ -32,4 +32,9 @@ public class ModelController {
 
     }
 
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(OK)
+    public void delete(@PathVariable int id){
+        this.modelService.delete(id);
+    }
 }
