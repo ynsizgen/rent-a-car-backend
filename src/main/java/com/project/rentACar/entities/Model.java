@@ -26,7 +26,7 @@ public class Model {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "brand_id")
     private Brand brand;
 

@@ -37,7 +37,7 @@ public class Car {
     @Column(name="creat_date")
     private LocalDateTime createDate = LocalDateTime.now();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "model_id")
     private Model model;
 

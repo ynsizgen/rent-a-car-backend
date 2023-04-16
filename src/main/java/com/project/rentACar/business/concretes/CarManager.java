@@ -52,8 +52,6 @@ public class CarManager implements CarService {
         if (brand == null) {
             brand = new Brand();
             brand.setName(createCarRequest.getBrandName());
-            //CreateBrandRequest createBrandRequest = this.modelMapperService.forResponse().map(brand,CreateBrandRequest.class);
-            //brandService.add(createBrandRequest);
         }
 
         Model model= this.modelService.getByName(createCarRequest.getModelName());
@@ -63,9 +61,6 @@ public class CarManager implements CarService {
             model.setName(createCarRequest.getModelName());
             model.setBrand(brand);
 
-
-//            CreateModelRequest createModelRequest = this.modelMapperService.forResponse().map(model,CreateModelRequest.class);
-//            modelService.add(createModelRequest);
         }
 
         Car car = this.modelMapperService.forRequest().map(createCarRequest,Car.class);
