@@ -11,13 +11,8 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
-@Table(name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")
-        })
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +25,12 @@ public class User {
     @NotBlank
     @Size(max = 50)
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotBlank
     @Size(max = 120)
+    @Column(unique = true)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
