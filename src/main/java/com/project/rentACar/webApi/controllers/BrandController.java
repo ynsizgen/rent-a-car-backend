@@ -6,7 +6,6 @@ import com.project.rentACar.business.request.UpdateBrandRequest;
 import com.project.rentACar.business.response.GetAllBrandsResponse;
 import com.project.rentACar.business.response.GetByIdBrandResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,27 +21,30 @@ public class BrandController {
     private BrandService brandService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<GetAllBrandsResponse>> getAll(){
-        return new ResponseEntity<>(this.brandService.getAll(), OK);
+    @ResponseStatus(OK)
+    public List<GetAllBrandsResponse> getAll(){
+        return this.brandService.getAll();
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<GetByIdBrandResponse> getById(@PathVariable int id){
-        return new ResponseEntity<>(this.brandService.getById(id),OK);
+    @ResponseStatus(OK)
+    public GetByIdBrandResponse getById(@PathVariable int id){
+        return this.brandService.getById(id);
     }
 
     @PostMapping("/addBrand")
-    public ResponseEntity<Boolean> add(@RequestBody @Valid CreateBrandRequest createBrandRequest){
-       return new ResponseEntity<>(this.brandService.add(createBrandRequest), CREATED);
+    @ResponseStatus(OK)
+    public Boolean add(@RequestBody @Valid CreateBrandRequest createBrandRequest){
+       return this.brandService.add(createBrandRequest);
     }
 
     @DeleteMapping("/deleteBrand/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable int id){
-       return new ResponseEntity<>(this.brandService.delete(id), OK);
+    public Boolean delete(@PathVariable int id){
+       return this.brandService.delete(id);
     }
 
     @PutMapping
-    public ResponseEntity<Boolean> update(@RequestBody @Valid UpdateBrandRequest updateBrandRequest){
-        return new ResponseEntity<>(this.brandService.update(updateBrandRequest), OK);
+    public Boolean update(@RequestBody @Valid UpdateBrandRequest updateBrandRequest){
+        return this.brandService.update(updateBrandRequest);
     }
 }
