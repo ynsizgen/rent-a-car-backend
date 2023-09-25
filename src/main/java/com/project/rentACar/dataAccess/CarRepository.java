@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface CarRepository extends JpaRepository<Car,Integer> {
+public interface CarRepository extends JpaRepository<Car,UUID> {
 
     boolean existsByPlates(String plates);
 
@@ -15,5 +16,6 @@ public interface CarRepository extends JpaRepository<Car,Integer> {
     @Query("select c from Car c where c.state = 0")
     List<Car> findAllByStateTrue();
 
-
+    @Query("select c from Car c where c.plates=:plate")
+    Car getByPlate(String plate);
 }

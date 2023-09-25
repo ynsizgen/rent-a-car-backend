@@ -4,16 +4,16 @@ import com.project.rentACar.enums.EnumVehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetByIdCarResponse {
 
-    private int id;
+    private UUID id;
     private Enum state;
     private String plates;
     private double dailyPrice;

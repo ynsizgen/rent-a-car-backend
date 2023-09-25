@@ -4,7 +4,7 @@ package com.project.rentACar.core.security;
 import com.project.rentACar.core.security.jwt.AuthEntryPointJwt;
 import com.project.rentACar.core.security.jwt.AuthTokenFilter;
 import com.project.rentACar.core.security.services.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,11 +25,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         // securedEnabled = true,
         // jsr250Enabled = true,
         prePostEnabled = true)
+@AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean

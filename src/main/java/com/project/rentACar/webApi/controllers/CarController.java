@@ -6,12 +6,14 @@ import com.project.rentACar.business.request.UpdateCarRequest;
 import com.project.rentACar.business.response.GetAllCarsResponse;
 import com.project.rentACar.business.response.GetByIdCarResponse;
 import com.project.rentACar.business.response.GetByModelIdCarResponse;
+import com.project.rentACar.business.response.GetByPlateCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/cars")
@@ -39,13 +41,20 @@ public class CarController {
     }
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable UUID id){
         this.carService.delete(id);
     }
+
     @GetMapping("/getById/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GetByIdCarResponse GetByIdCarResponse(@PathVariable int id){
+    public GetByIdCarResponse getById(@PathVariable UUID id){
         return this.carService.getById(id);
+    }
+
+    @GetMapping("/getByPlate/{plate}")
+    @ResponseStatus(HttpStatus.OK)
+    public GetByPlateCarResponse getByPlate(@PathVariable String plate){
+        return this.carService.getByPlate(plate);
     }
 
     @GetMapping("/getByModelId/{id}")

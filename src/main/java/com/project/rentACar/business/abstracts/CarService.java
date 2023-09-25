@@ -5,8 +5,10 @@ import com.project.rentACar.business.request.UpdateCarRequest;
 import com.project.rentACar.business.response.GetAllCarsResponse;
 import com.project.rentACar.business.response.GetByIdCarResponse;
 import com.project.rentACar.business.response.GetByModelIdCarResponse;
+import com.project.rentACar.business.response.GetByPlateCarResponse;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CarService {
     List<GetAllCarsResponse> getAll();
@@ -19,7 +21,9 @@ public interface CarService {
 
     List<GetByIdCarResponse> findAllByStateTrue();
 
-    GetByIdCarResponse getById(int id);
+    GetByIdCarResponse getById(UUID id);
 
-    void delete(int id);
+    void delete(UUID id);
+
+    GetByPlateCarResponse getByPlate(String id);
 }

@@ -24,6 +24,8 @@ public class CreateCarRequest {
     @NotNull
     private double dailyPrice;
     @NotNull
+    private int vehicleType;
+    @NotNull
     private int modelYear;
     @NotNull
     private int seats;

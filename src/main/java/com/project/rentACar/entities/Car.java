@@ -5,9 +5,11 @@ import com.project.rentACar.enums.EnumVehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @Table(name = "Cars")
@@ -17,9 +19,10 @@ import java.time.LocalDateTime;
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    private UUID id;
+
     @Column(name = "state")
     private EnumState state;
     @Column(name = "plates" , unique = true)

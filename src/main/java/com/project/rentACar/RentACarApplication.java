@@ -13,7 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 
@@ -47,7 +46,7 @@ public class RentACarApplication {
 	}
 
 	@ExceptionHandler
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	public ProblemDetails handleEntityIdException(EntityNotFoundException entityNotFoundException) {
 		ProblemDetails problemDetails = new ProblemDetails();
 		problemDetails.setMessage(entityNotFoundException.getMessage());
