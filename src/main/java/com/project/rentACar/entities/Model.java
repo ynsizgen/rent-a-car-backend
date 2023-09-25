@@ -12,7 +12,6 @@ import java.util.List;
 
 
 @Table(name = "Models")
-//@Data
 @Getter
 @Setter
 @AllArgsConstructor
