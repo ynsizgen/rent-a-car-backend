@@ -25,6 +25,6 @@ public class Brand {
     @Column(length = 50, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "brand")
-    private List<Model> models;
+//    @OneToMany(mappedBy = "brand")
+//    private List<Model> models;
 }
